@@ -1,11 +1,11 @@
 <?php
-$server = 'localhost';
-$username='root';
-$password='';
-$db_name='institute';
+session_start();
+if (!isset($_SESSION['username']))
+{
+    echo $_SESSION['username'];
+}
 
-$conn = new mysqli($server,$username,$password,$db_name) ;
-
+include 'connection.php';
 if ($conn->connect_error)
 {
     die("Connection failed: " . $conn->connect_error);
@@ -33,6 +33,7 @@ if (empty($res->num_rows))
 <div class="container mt-5">
             <h1 class="text-center text-white">Students Data</h1>
     <a class="btn btn-primary" href="insert.php" style="float: right; font-weight: bold">Add Student</a>
+    <a class="btn btn-primary" href="check_login.php?logout=1" style="float: right; font-weight: bold">Logout</a>
     <table class="table bg-secondary text-white rounded mt-5 border table-bordered text-center">
         <thead class="bg-info ">
         <tr class="h3">
